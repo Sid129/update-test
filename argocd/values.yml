@@ -1,0 +1,89 @@
+landscapes:
+  - name: hec98
+    provider: aws
+    description: 'hec98 Landscape'
+    cluster:
+      name: hec98
+      targetNamespace: monitoring
+      server: https://api.hec98.hec-infra.shoot.live.k8s-hana.ondemand.com
+      bearerToken: 8FZmRX6qGwfYldoNFWcaykNN058eiEO5gpIEi4nzaSpFiW1oYLANUcGkcV9O993x7APVp40LmyQ6QNKKkiCC1W516gyvAUDv2zbmUTW9P0irXJVvXafFGsnGa8fZMyCo
+      caData: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMyRENDQWNDZ0F3SUJBZ0lSQU9PM1dxS2MyZ25wa1VkQVpFTUhnUWN3RFFZSktvWklodmNOQVFFTEJRQXcKRlRFVE1CRUdBMVVFQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TURBNU1UVXhNVE13TVRkYUZ3MHpNREE1TVRVeApNVE13TVRkYU1CVXhFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBCkE0SUJEd0F3Z2dFS0FvSUJBUURTOEZoSWhGdVArUGRFWW0vZFBDSHhVZGpWZXFSS1pwZG1MWmU4VVpFNWM2cTYKOGk0Q2xaOXJPZFFNNW92RlNDWjFneGhoY1F1SFJIYUdwRjE0WG4ybUNNOVptb1JmWmxrcHFIWC94UjVJSEJpQwo1NityU25xMmdhWXBSZzI1TjVrWmsrOHMzREpNRDJWMUFxZFd5eVVqMnRPenB6SnZqaWFVeUVFN09CM0oyM3U0CnBWVFJOemN6S1B6ZU5sZDJUbXlVQzRpMFlvdUx0MDZMMzdvV3VTWjZZV0NGN0lJTTN6SEVydlFLZFJIY2JpN2UKVGRmbnRybk5yM0lSK3NCa284eUUxMGpmdjdwWVZraENQaTdIRnBVa2ZIUzI2eUluWU9KQUYydGRYTUpQWTZxRwpaVXpYbitnSXFpbnQ4NncvdjdwcytlQnEvYWJGOU9MZUlvVHJVQjhuQWdNQkFBR2pJekFoTUE0R0ExVWREd0VCCi93UUVBd0lCcGpBUEJnTlZIUk1CQWY4RUJUQURBUUgvTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFDOHY3aWMKVzZPbkxMUkh2MXRZdEhNYTNkZ1E1ZmdVblpBd0RrQ3V2aDhzZ0diVTRiZ2k1cVp6bGlSQ3BpcDVueFR0Q3I1UwptZk1qMGNtcUhlNTVYdE5lM1lrQ2gwK3E1QWR6QlMyNzB4bXR4Slhia0oxS2tVVVNXbXpoc01KbWFLamVrcG9DCnFwY2ZpakdUMmkwQUNKZStnY2dHcldFb0dRZ1QyZDQ1L3ZDQzllZVNYZ28xRXpwUU1rSDVrU2JZcDJJSzQwcHYKYmI5MERSSVRHdDBUK0VMdGFjNTl2MEJyd1F0WWJjRmhDd3BRb1NheEN2clhyc1hMOXdSekhOU3U5cVUrL09ONgpZYlRqTUQ1ZVRsbnN0aDNPNlYyUDJ6K1Q4YUU3c05pZnAvS21iaE94UVVHanpXUzNaZzA1V3krd3pUci90YkxXCjFSQ1BXMktzbjVSdjZpQkUKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    nginxIngress:
+      targetNamespace: ingress
+      targetRevision: 4.2.5
+      valueFiles:
+        - values/hec98/ingress-nginx/values.yaml
+    blackboxExporter:
+      targetNamespace: monitoring
+      targetRevision: 5.0.3
+      valueFiles:
+        - values/hec98/blackbox-exporter/values.yaml
+    grafana:
+      targetNamespace: monitoring
+      targetRevision: 6.48.0
+      valueFiles:
+        - values/hec98/grafana/values.yaml
+        # - values/hec98/grafana/datasources.yaml
+        # - values/hec98/grafana/dashboards.yaml
+    storageclasses:
+      targetNamespace: default
+      valueFiles:
+        - ../../values/hec98/storageclasses/values.yaml
+    ticExporterSecrets:
+      targetNamespace: monitoring
+      targetRevision: 0.1.0
+      valueFiles:
+        - values/hec98/tic-exporter-secrets/values.yaml
+    corednsCustom:
+      targetNamespace: kube-system
+      targetRevision: 0.1.0
+      valueFiles:
+        - values/hec98/coredns-custom/values.yaml
+    victoriaMetricsCluster:
+      targetNamespace: monitoring
+      targetRevision: 0.9.38
+      valueFiles:
+        - values/hec98/victoria-metrics-cluster/values.yaml
+    victoriaMetricsAgent:
+      targetNamespace: monitoring
+      targetRevision: 0.8.19
+      valueFiles:
+        - values/hec98/victoria-metrics-agent/values.yaml
+    victoriaMetricsAlert:
+      - name: vmalert
+        targetNamespace: monitoring
+        targetRevision: 0.5.2
+        valueFiles:
+          - values/hec98/victoria-metrics-alert/values.yaml
+    enterpriseLogs:
+      targetNamespace: logging
+      targetRevision: 3.3.4
+      valueFiles:
+        - values/hec98/grafana-enterprise-logs/values.yaml
+    promtail:
+      targetNamespace: logging
+      targetRevision: 6.8.0
+      valueFiles:
+        - values/hec98/promtail/values.yaml
+    kubeStateMetrics:
+      targetNamespace: monitoring
+      targetRevision: 4.22.3
+      valueFiles:
+        - values/hec98/kube-state-metrics/values.yaml
+    externalSecretsOperator:
+      targetNamespace: external-secrets-mon
+      targetRevision: 0.5.6
+      valueFiles:
+        - values/hec98/external-secrets-operator/values.yaml
+    actionsRunner:
+      targetNamespace: github-actions
+      targetRevision: 0.20.2
+      valueFiles:
+        - values/hec98/actions-runner/values.yaml
+    certManager:
+      targetNamespace: cert-manager
+      targetRevision: v1.8.2
+      valueFiles:
+        - values/hec98/cert-manager/values.yaml
+    $i:
+      targetRevision: $latest_tag
