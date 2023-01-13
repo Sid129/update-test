@@ -6,8 +6,7 @@ git add .
 git commit -m 'test'
 owner=$(basename $(dirname $repo_url))
 repo=$(basename $repo_url)
-curl \
-  -X POST \
+curl -X POST \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer $GITHUB_TOKEN"\
   -H "X-GitHub-Api-Version: 2022-11-28" \
