@@ -1,6 +1,6 @@
 git config --global user.email "sachinuppar129@gmail.com"
   git config --global user.name "Sidd"
-git checkout -b 'update'
+git checkout -b update
 yq -i ".landscapes.add='new'" ./argocd/values.yml
 git add .
 git commit -m 'test'
