@@ -1,5 +1,5 @@
 search=.
-for entry in "$search_dir"/*
+for entry in "$search"/*
 do
   echo "$entry"
 done
