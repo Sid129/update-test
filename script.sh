@@ -1,8 +1,9 @@
 #cd update-test
 #pwd
+sudo snap install yq && sudo apt install git
 git config --global user.email "sachinuppar129@gmail.com"
 git config --global user.name "Sidd"
-sudo snap install yq && sudo apt install git -y
+git pull https://github.com/Sid129/update-test.git
 sudo yq -i ".landscapes.add='new'" ./argocd/values.yml
 if git diff --quiet; then
   echo "targetRevision was not changed"
