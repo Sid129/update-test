@@ -1,4 +1,8 @@
-ls
+search_dir=.
+for entry in "$search_dir"/*
+do
+  echo "$entry"
+done
 # git config --global user.email "sachinuppar129@gmail.com"
 # git config --global user.name "Sidd"
 # sudo yq -i ".landscapes.add='new'" ./values.yml
