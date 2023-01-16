@@ -2,7 +2,7 @@
 #pwd
 git config --global user.email "sachinuppar129@gmail.com"
 git config --global user.name "Sidd"
-sudo apt-get install yq && sudo apt-get install git
+sudo snap install yq && sudo apt install git -y
 sudo yq -i ".landscapes.add='new'" ./values.yml
 if git diff --quiet; then
   echo "targetRevision was not changed"
