@@ -1,4 +1,4 @@
-search_dir=.
+search=.
 for entry in "$search_dir"/*
 do
   echo "$entry"
